@@ -53,13 +53,13 @@ body{font-family:var(--font);}
 
 /* Lang dropdown */
 .lang-wrap{position:relative;}
-.lang-btn{display:flex;align-items:center;gap:5px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:7px 13px;font-family:inherit;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:border-color 0.2s;white-space:nowrap;width:100%;}
-.lang-btn:hover{border-color:rgba(139,92,44,0.3);}
-.lang-dd{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--elevated);border:1px solid var(--border);border-radius:12px;overflow:hidden;z-index:200;box-shadow:var(--shadow-lg);opacity:0;transform:translateY(-4px) scale(0.98);pointer-events:none;transition:all 0.16s;}
+.lang-btn{display:flex;align-items:center;gap:5px;background:var(--card);border:1.5px solid rgba(139,92,44,0.18);border-radius:20px;padding:7px 13px;font-family:inherit;font-size:12px;font-weight:600;color:var(--text);cursor:pointer;transition:border-color 0.2s,background 0.2s;white-space:nowrap;width:100%;}
+.lang-btn:hover{border-color:rgba(139,92,44,0.4);background:var(--surface);}
+.lang-dd{position:fixed;background:var(--elevated);border:1.5px solid rgba(139,92,44,0.18);border-radius:12px;overflow:hidden;z-index:9999;box-shadow:0 8px 32px rgba(28,21,16,0.16);opacity:0;transform:translateY(-4px) scale(0.98);pointer-events:none;transition:all 0.16s;}
 .lang-dd.open{opacity:1;transform:none;pointer-events:all;}
 .lang-opt{padding:11px 14px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:background 0.1s;display:flex;align-items:center;gap:10px;}
 .lang-opt:hover{background:var(--surface);color:var(--text);}
-.lang-opt.active{color:var(--accent);}
+.lang-opt.active{color:var(--accent);background:var(--accent-dim);}
 .lang-opt .ck{width:14px;opacity:0;color:var(--accent);}
 .lang-opt.active .ck{opacity:1;}
 
@@ -217,29 +217,42 @@ body{font-family:var(--font);}
 .player{position:fixed;inset:0;background:var(--bg);z-index:200;transform:translateY(100%);transition:transform 0.44s cubic-bezier(.32,0,.18,1);display:flex;flex-direction:column;}
 .player.open{transform:translateY(0);}
 @media(min-width:900px){
-  .player{inset:auto;bottom:var(--ph);left:50%;width:480px;border-radius:24px 24px 0 0;box-shadow:0 -8px 60px rgba(28,21,16,0.12);max-height:calc(100vh - var(--ph) - 32px);transform:translateX(-50%) translateY(calc(100% + 20px));}
+  .player{inset:auto;bottom:var(--ph);left:50%;width:500px;border-radius:24px 24px 0 0;box-shadow:0 -8px 60px rgba(28,21,16,0.14);max-height:calc(100vh - var(--ph) - 24px);transform:translateX(-50%) translateY(calc(100% + 20px));}
   .player.open{transform:translateX(-50%) translateY(0);}
 }
 .player-handle{width:32px;height:3px;background:var(--border);border-radius:2px;margin:14px auto 0;}
+@media(min-width:900px){.player-handle{display:none;}}
 .player-top{display:flex;align-items:center;justify-content:space-between;padding:12px 22px 0;}
 .player-down{background:none;border:none;cursor:pointer;color:var(--muted);padding:6px;display:flex;border-radius:10px;}
 .player-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
 .player-body{flex:1;display:flex;flex-direction:column;align-items:center;padding:18px 28px 0;overflow:hidden;}
+@media(min-width:900px){
+  .player-body{overflow-y:auto;padding:16px 32px 28px;}
+  .player-body::-webkit-scrollbar{width:4px;}
+  .player-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+}
 .art-wrap{width:220px;height:220px;border-radius:26px;overflow:hidden;margin-bottom:26px;border:1px solid var(--border);box-shadow:var(--shadow-lg);transition:transform 0.5s,box-shadow 0.5s;flex-shrink:0;position:relative;background:var(--card);}
+@media(min-width:900px){.art-wrap{width:160px;height:160px;border-radius:20px;margin-bottom:18px;}}
 .art-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
 .art-wrap.playing{transform:scale(1.03);box-shadow:0 24px 72px rgba(139,92,44,0.14);}
 .player-ep{font-family:var(--font-ser);font-size:20px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;line-height:1.35;font-style:italic;}
+@media(min-width:900px){.player-ep{font-size:17px;}}
 .player-ser{font-size:13px;color:var(--text2);text-align:center;margin-bottom:24px;}
+@media(min-width:900px){.player-ser{margin-bottom:16px;font-size:12px;}}
 .prog-wrap{width:100%;margin-bottom:24px;}
+@media(min-width:900px){.prog-wrap{margin-bottom:16px;}}
 .prog-track{height:3px;background:var(--border);border-radius:2px;cursor:pointer;position:relative;}
 .prog-fill{height:100%;background:linear-gradient(to right,var(--accent),var(--accent2));border-radius:2px;position:relative;}
 .prog-fill::after{content:'';position:absolute;right:-7px;top:-5px;width:13px;height:13px;background:var(--accent);border-radius:50%;box-shadow:0 2px 8px rgba(139,92,44,0.35);}
 .prog-times{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;}
 .ctrl-main{display:flex;align-items:center;justify-content:center;gap:32px;margin-bottom:20px;}
+@media(min-width:900px){.ctrl-main{margin-bottom:12px;}}
 .ctrl-side{background:none;border:none;cursor:pointer;color:var(--text);opacity:0.4;padding:4px;display:flex;transition:opacity 0.15s;}
 .ctrl-big{width:66px;height:66px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(139,92,44,0.28);color:#fff;transition:transform 0.15s;}
+@media(min-width:900px){.ctrl-big{width:56px;height:56px;}}
 .ctrl-big:active{transform:scale(0.93);}
 .ctrl-sec{display:flex;align-items:center;justify-content:center;gap:52px;margin-bottom:22px;}
+@media(min-width:900px){.ctrl-sec{margin-bottom:14px;}}
 .ctrl-skip{background:none;border:none;cursor:pointer;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-family:inherit;font-weight:600;padding:0;letter-spacing:0.3px;}
 .vol-row{width:100%;display:flex;align-items:center;gap:10px;}
 .vol-ic{color:var(--muted);display:flex;}
@@ -373,51 +386,97 @@ const IcoVolLo   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="c
 const IcoVolHi   = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>;
 const Wave       = () => <div className="wave"><b/><b/><b/></div>;
 
-/* ── Lang dropdown ── */
+/* ── Lang dropdown (portal-based to escape sidebar overflow clipping) ── */
 function LangDropdown({lang, setLang}) {
   const [open, setOpen] = useState(false);
-  const ref = useRef();
+  const [rect, setRect] = useState(null);
+  const btnRef = useRef();
+  const ddRef  = useRef();
+
   useEffect(() => {
-    const h = e => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const h = e => {
+      if (btnRef.current?.contains(e.target)) return;
+      if (ddRef.current?.contains(e.target)) return;
+      setOpen(false);
+    };
     document.addEventListener('mousedown', h);
     return () => document.removeEventListener('mousedown', h);
   }, []);
+
+  const toggle = () => {
+    if (!open && btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setRect({top: r.bottom + 6, left: r.left, width: r.width});
+    }
+    setOpen(o => !o);
+  };
+
+  const dd = rect && ReactDOM.createPortal(
+    <div ref={ddRef} className={`lang-dd${open?' open':''}`}
+      style={{top:rect.top, left:rect.left, width:rect.width}}>
+      {Object.entries(LANGS).map(([k,v]) => (
+        <div key={k} className={`lang-opt ${lang===k?'active':''}`} onClick={() => { setLang(k); setOpen(false); }}>
+          <span className="ck"><IcoCheck/></span><span>{v}</span>
+        </div>
+      ))}
+    </div>,
+    document.body
+  );
+
   return (
-    <div className="lang-wrap" ref={ref}>
-      <button className="lang-btn" onClick={() => setOpen(o => !o)}>
+    <div className="lang-wrap">
+      <button ref={btnRef} className="lang-btn" onClick={toggle}>
         <IcoGlobe/><span style={{flex:1,textAlign:'left'}}>{LANGS[lang]}</span>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" style={{opacity:0.5,transition:'transform 0.2s',transform:open?'rotate(180deg)':'none'}}><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div className={`lang-dd ${open?'open':''}`}>
-        {Object.entries(LANGS).map(([k,v]) => (
-          <div key={k} className={`lang-opt ${lang===k?'active':''}`} onClick={() => { setLang(k); setOpen(false); }}>
-            <span className="ck"><IcoCheck/></span><span>{v}</span>
-          </div>
-        ))}
-      </div>
+      {dd}
     </div>
   );
 }
 
-/* Mobile lang dropdown (right-aligned) */
+/* Mobile lang dropdown */
 function MobileLangBtn({lang, setLang}) {
   const [open, setOpen] = useState(false);
-  const ref = useRef();
+  const [rect, setRect] = useState(null);
+  const btnRef = useRef();
+  const ddRef  = useRef();
+
   useEffect(() => {
-    const h = e => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    const h = e => {
+      if (btnRef.current?.contains(e.target)) return;
+      if (ddRef.current?.contains(e.target)) return;
+      setOpen(false);
+    };
     document.addEventListener('mousedown', h);
     return () => document.removeEventListener('mousedown', h);
   }, []);
+
+  const toggle = () => {
+    if (!open && btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setRect({top: r.bottom + 6, right: window.innerWidth - r.right, width: 150});
+    }
+    setOpen(o => !o);
+  };
+
+  const dd = rect && ReactDOM.createPortal(
+    <div ref={ddRef} className={`lang-dd${open?' open':''}`}
+      style={{top:rect.top, right:rect.right, left:'auto', width:rect.width}}>
+      {Object.entries(LANGS).map(([k,v]) => (
+        <div key={k} className={`lang-opt ${lang===k?'active':''}`} onClick={() => { setLang(k); setOpen(false); }}>
+          <span className="ck"><IcoCheck/></span><span>{v}</span>
+        </div>
+      ))}
+    </div>,
+    document.body
+  );
+
   return (
-    <div ref={ref} style={{position:'relative'}}>
-      <button className="mob-lang-btn" onClick={() => setOpen(o => !o)}><IcoGlobe/><span>{LANGS[lang]}</span></button>
-      <div className={`lang-dd ${open?'open':''}`} style={{left:'auto',right:0,width:140,top:'calc(100% + 6px)'}}>
-        {Object.entries(LANGS).map(([k,v]) => (
-          <div key={k} className={`lang-opt ${lang===k?'active':''}`} onClick={() => { setLang(k); setOpen(false); }}>
-            <span className="ck"><IcoCheck/></span><span>{v}</span>
-          </div>
-        ))}
-      </div>
+    <div>
+      <button ref={btnRef} className="mob-lang-btn" onClick={toggle}>
+        <IcoGlobe/><span>{LANGS[lang]}</span>
+      </button>
+      {dd}
     </div>
   );
 }
@@ -680,6 +739,10 @@ function MiniPlayer({nowPlaying, isPlaying, onTogglePlay, onOpen, audioRef}) {
         </div>
         <button className="np-btn" onClick={e => { e.stopPropagation(); onTogglePlay(); }}>
           {buffering ? <div className="np-buf"/> : isPlaying ? <IcoPause s={22}/> : <IcoPlay s={22}/>}
+        </button>
+        <button className="np-btn np-expand" onClick={e => { e.stopPropagation(); onOpen(); }} title="Open player"
+          style={{marginLeft:2}}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 15l-6-6-6 6"/></svg>
         </button>
       </div>
     </div>
