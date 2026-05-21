@@ -439,8 +439,12 @@ function Sidebar({lang, setLang, discLang, setDiscLang, activePill, setActivePil
       <div className="sb-sec">
         <div className="sb-lbl">Discourse Language</div>
         <div className="sb-disc">
-          <button className={`sb-disc-btn ${discLang==='en'?'active':''}`} onClick={() => setDiscLang('en')}>{t.discEn}</button>
-          <button className={`sb-disc-btn ${discLang==='hi'?'active':''}`} onClick={() => setDiscLang('hi')}>{t.discHi}</button>
+          <button className={`sb-disc-btn ${discLang==='en'?'active':''}`} onClick={() => setDiscLang('en')}>
+            {t.discEn}<span style={{fontSize:10,opacity:0.7,marginLeft:4}}>· {OSHO_DATA.en.reduce((a,s)=>a+s.e.length,0)}</span>
+          </button>
+          <button className={`sb-disc-btn ${discLang==='hi'?'active':''}`} onClick={() => setDiscLang('hi')}>
+            {t.discHi}<span style={{fontSize:10,opacity:0.7,marginLeft:4}}>· {OSHO_DATA.hi.reduce((a,s)=>a+s.e.length,0)}</span>
+          </button>
         </div>
       </div>
       <div className="sb-sec">
@@ -491,8 +495,12 @@ function HomeScreen({seriesList, onSeries, activePill, setActivePill, lang, setL
         <div className="topbar-wm">Osho<em style={{fontStyle:'normal',color:'var(--accent)'}}>·</em></div>
         <div className="topbar-right">
           <div className="mob-disc">
-            <button className={`mob-disc-btn ${discLang==='en'?'active':''}`} onClick={() => setDiscLang('en')}>{t.discEn}</button>
-            <button className={`mob-disc-btn ${discLang==='hi'?'active':''}`} onClick={() => setDiscLang('hi')}>{t.discHi}</button>
+            <button className={`mob-disc-btn ${discLang==='en'?'active':''}`} onClick={() => setDiscLang('en')}>
+              {t.discEn}<span style={{fontSize:9,opacity:0.7,marginLeft:3}}>· {OSHO_DATA.en.reduce((a,s)=>a+s.e.length,0)}</span>
+            </button>
+            <button className={`mob-disc-btn ${discLang==='hi'?'active':''}`} onClick={() => setDiscLang('hi')}>
+              {t.discHi}<span style={{fontSize:9,opacity:0.7,marginLeft:3}}>· {OSHO_DATA.hi.reduce((a,s)=>a+s.e.length,0)}</span>
+            </button>
           </div>
           <MobileLangBtn lang={lang} setLang={setLang}/>
         </div>
